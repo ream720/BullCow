@@ -2,21 +2,20 @@
 #include <string>
 
 
-using namespace std;
-
-
 //functions list / PROTOTYPES
 void PrintIntro();
 void PlayGame();
-string GetGuess();
+std::string GetGuess();
 bool AskToPlayAgain();
 
 
 //MAIN
 int main() {
+
     do {
 	   PrintIntro();
 	   PlayGame();
+
     } while (AskToPlayAgain() == true);
 
     return 0;
@@ -31,20 +30,20 @@ int main() {
 void PrintIntro() {
     constexpr int WORD_LENGTH = 5; //word length test condition
 
-    cout << endl;
-    cout << "Welcome to Bulls and Cows, a fun word game." << endl;
-    cout << endl;
+    std::cout << std::endl;
+    std::cout << "Welcome to Bulls and Cows, a fun word game." << std::endl;
+    std::cout << std::endl;
 
-    cout << "Can you guess the " << WORD_LENGTH << " letter word I'm thinking of?" << endl; //begin game by asking for a guess
+    std::cout << "Can you guess the " << WORD_LENGTH << " letter word I'm thinking of?" << std::endl; //begin game by asking for a guess
     return;
 }
 
 
 //get a guess from the player
-string GetGuess() {
-    string Guess = "";
-    cout << "What is your guess? ";
-    getline(cin, Guess);
+std::string GetGuess() {
+    std::string Guess = "";
+    std::cout << "What is your guess? ";
+    std::getline(std::cin, Guess);
     return Guess;
 }
 
@@ -53,18 +52,18 @@ string GetGuess() {
 void PlayGame() {
     constexpr int GUESS_COUNT = 5;
     for (int i = 1; i <= GUESS_COUNT; i++) {
-	   string Guess = GetGuess();
+	   std::string Guess = GetGuess();
 	   //repeat the guess back to them
-	   cout << "You guessed: " + Guess + "\n" << endl;
+	   std::cout << "You guessed: " + Guess + "\n" << std::endl;
     }
 }
 
 //Ask the user to play again
 bool AskToPlayAgain() {
-    cout << "Do you want to play again? \n";
-    cout << "Type Yes or No to continue. ";
-    string Response = "";
-    getline(cin, Response);
+    std::cout << "Do you want to play again? \n";
+    std::cout << "Type Yes or No to continue. ";
+    std::string Response = "";
+    std::getline(std::cin, Response);
 
     return (Response[0] == 'y') || (Response[0] == 'Y');
 }
