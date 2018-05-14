@@ -14,14 +14,10 @@ bool AskToPlayAgain();
 
 //MAIN
 int main() {
-
-    PrintIntro();
-
-    PlayGame();
-
-    AskToPlayAgain();
-
-    cout << AskToPlayAgain();
+    do {
+	   PrintIntro();
+	   PlayGame();
+    } while (AskToPlayAgain() == true);
 
     return 0;
 }
@@ -35,6 +31,7 @@ int main() {
 void PrintIntro() {
     constexpr int WORD_LENGTH = 5; //word length test condition
 
+    cout << endl;
     cout << "Welcome to Bulls and Cows, a fun word game." << endl;
     cout << endl;
 
