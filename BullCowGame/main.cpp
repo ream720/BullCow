@@ -1,12 +1,15 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
+
 
 //functions list / PROTOTYPES
 void PrintIntro();
 void PlayGame();
 string GetGuess();
+bool AskToPlayAgain();
 
 
 //MAIN
@@ -15,6 +18,10 @@ int main() {
     PrintIntro();
 
     PlayGame();
+
+    AskToPlayAgain();
+
+    cout << AskToPlayAgain();
 
     return 0;
 }
@@ -35,6 +42,7 @@ void PrintIntro() {
     return;
 }
 
+
 //get a guess from the player
 string GetGuess() {
     string Guess = "";
@@ -42,6 +50,7 @@ string GetGuess() {
     getline(cin, Guess);
     return Guess;
 }
+
 
 //loop for the number of GUESS_COUNT asking for guesses
 void PlayGame() {
@@ -51,4 +60,14 @@ void PlayGame() {
 	   //repeat the guess back to them
 	   cout << "You guessed: " + Guess + "\n" << endl;
     }
+}
+
+//Ask the user to play again
+bool AskToPlayAgain() {
+    cout << "Do you want to play again? \n";
+    cout << "Type Yes or No to continue. ";
+    string Response = "";
+    getline(cin, Response);
+
+    return (Response[0] == 'y') || (Response[0] == 'Y');
 }
