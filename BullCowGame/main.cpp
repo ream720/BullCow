@@ -3,42 +3,52 @@
 
 using namespace std;
 
-//functions list
+//functions list / PROTOTYPES
 void PrintIntro();
-string GetGuessAndPrint();
+void PlayGame();
+string GetGuess();
 
 
-//entry point
+//MAIN
 int main() {
 
     PrintIntro();
 
-    GetGuessAndPrint();
+    PlayGame();
 
     return 0;
 }
 
 
-//introduce the game
+
+//   METHODS & FUNCTIONS	  METHODS & FUNCTIONS    METHODS & FUNCTIONS	  METHODS & FUNCTIONS	  METHODS & FUNCTIONS    METHODS & FUNCTIONS	METHODS & FUNCTIONS	  METHODS & FUNCTIONS    METHODS & FUNCTIONS
+
+
+    //introduce the game
 void PrintIntro() {
     constexpr int WORD_LENGTH = 5; //word length test condition
 
-    //text
     cout << "Welcome to Bulls and Cows, a fun word game." << endl;
     cout << endl;
-    //begin game by asking for a guess
-    cout << "Can you guess the " << WORD_LENGTH << " letter word I'm thinking of?" << endl;
+
+    cout << "Can you guess the " << WORD_LENGTH << " letter word I'm thinking of?" << endl; //begin game by asking for a guess
     return;
 }
 
 //get a guess from the player
-string GetGuessAndPrint() {
+string GetGuess() {
     string Guess = "";
     cout << "What is your guess? ";
     getline(cin, Guess);
-    cout << endl;
-
-    //repeat the guess back to them
-    cout << "You guessed: " + Guess + "\n" << endl;
     return Guess;
+}
+
+//loop for the number of GUESS_COUNT asking for guesses
+void PlayGame() {
+    constexpr int GUESS_COUNT = 5;
+    for (int i = 1; i <= GUESS_COUNT; i++) {
+	   string Guess = GetGuess();
+	   //repeat the guess back to them
+	   cout << "You guessed: " + Guess + "\n" << endl;
+    }
 }
