@@ -57,6 +57,8 @@ std::string GetGuess() {
 //loop for the number of GUESS_COUNT asking for guesses
 void PlayGame() {
 
+    BCGame.Reset();
+
     int MaxTries = BCGame.GetMaxTries();
 
     for (int i = 1; i <= MaxTries; i++) {
@@ -75,3 +77,4 @@ bool AskToPlayAgain() {
 
     return (Response[0] == 'y') || (Response[0] == 'Y');
 }
+
