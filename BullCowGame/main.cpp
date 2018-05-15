@@ -1,15 +1,29 @@
+
+/* This is the console executable that makes use of the BullCow class.
+    This acts as the view in a MVC pattern and is responsible for all user interaction.
+    
+    For game logic, see the FBullCowGame class.
+*/
+
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
 
+using FText = std::string;
+using int32 = int;
+
+
 //functions list / PROTOTYPES
 void PrintIntro();
 void PlayGame();
-std::string GetGuess();
+FText GetGuess();
 bool AskToPlayAgain();
 
+
 FBullCowGame BCGame; //instantiate a new game
+
 
 
 //MAIN
@@ -31,7 +45,7 @@ int main() {
 
     //introduce the game
 void PrintIntro() {
-    constexpr int WORD_LENGTH = 5; //word length test condition
+    constexpr int32 WORD_LENGTH = 5; //word length test condition
 
     std::cout << std::endl;
     std::cout << "Welcome to Bulls and Cows, a fun word game." << std::endl;
@@ -43,11 +57,11 @@ void PrintIntro() {
 
 
 //get a guess from the player
-std::string GetGuess() {
+FText GetGuess() {
 
-    int CurrentTry = BCGame.GetCurrentTry();
+    int32 CurrentTry = BCGame.GetCurrentTry();
 
-    std::string Guess = "";
+    FText Guess = "";
     std::cout << "Try: " << CurrentTry << ". Enter your guess: ";
     std::getline(std::cin, Guess);
     return Guess;
@@ -59,20 +73,26 @@ void PlayGame() {
 
     BCGame.Reset();
 
-    int MaxTries = BCGame.GetMaxTries();
+    int32 MaxTries = BCGame.GetMaxTries();
 
-    for (int i = 1; i <= MaxTries; i++) {
-	   std::string Guess = GetGuess();
+    //TODO change to WHILE loop when we have validation done
+    for (int32 i = 1; i <= MaxTries; i++) {
+	   FText Guess = GetGuess(); //TODO loop validity checker
+
+	   //submit valid guess
+	   //print bulls and cows
+
 	   //repeat the guess back to them
 	   std::cout << "You guessed: " + Guess + "\n" << std::endl;
     }
+    //TODO summarize game 
 }
 
 //Ask the user to play again
 bool AskToPlayAgain() {
     std::cout << "Do you want to play again? \n";
     std::cout << "Type Yes or No to continue. ";
-    std::string Response = "";
+    FText Response = "";
     std::getline(std::cin, Response);
 
     return (Response[0] == 'y') || (Response[0] == 'Y');
