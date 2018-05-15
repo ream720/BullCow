@@ -51,7 +51,7 @@ void PrintIntro() {
     std::cout << "Welcome to Bulls and Cows, a fun word game." << std::endl;
     std::cout << std::endl;
 
-    std::cout << "Can you guess the " << WORD_LENGTH << " letter word I'm thinking of?" << std::endl; //begin game by asking for a guess
+    std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter word I'm thinking of?" << std::endl; //begin game by asking for a guess
     return;
 }
 

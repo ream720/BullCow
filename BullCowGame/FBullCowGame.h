@@ -21,10 +21,12 @@ public:
 
     int32 GetMaxTries() const;
     int32 GetCurrentTry() const;
+    int32 GetHiddenWordLength() const;
     bool IsGameWon() const;
+    bool CheckGuessValidity(FString) const;
 
     void Reset(); //todo richer return value
-    bool CheckGuessValidity(FString);
+    
 
     FBullCowCount SubmitGuess(FString);
 
