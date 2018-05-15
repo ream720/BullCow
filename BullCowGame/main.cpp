@@ -77,7 +77,9 @@ void PlayGame() {
 
     //TODO change to WHILE loop when we have validation done
     for (int32 i = 1; i <= MaxTries; i++) {
-	   FText Guess = GetGuess(); //TODO loop validity checker
+	   FText Guess = GetGuess(); 
+
+	   EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
 
 	   //submit valid guess
 	   FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);

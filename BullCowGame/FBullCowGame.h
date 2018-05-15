@@ -8,9 +8,11 @@ using int32 = int;
 
 
 
-enum class EWordStatus {
+enum class EGuessStatus {
     OK, 
-    NOT_ISOGRAM
+    NOT_ISOGRAM,
+    WRONG_LENGTH,
+    NOT_LOWERCASE,
 };
 
 struct FBullCowCount {
@@ -28,7 +30,7 @@ public:
     int32 GetCurrentTry() const;
     int32 GetHiddenWordLength() const;
     bool IsGameWon() const;
-    EWordStatus CheckGuessValidity(FString) const;
+    EGuessStatus CheckGuessValidity(FString) const;
 
     void Reset(); //todo richer return value
     
