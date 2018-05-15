@@ -8,6 +8,12 @@ using int32 = int;
 
 
 
+struct FBullCowCount {
+    int32 Bulls = 0;
+    int32 Cows = 0;
+};
+
+
 class FBullCowGame {
 public:
 
@@ -19,11 +25,13 @@ public:
 
     void Reset(); //todo richer return value
     bool CheckGuessValidity(FString);
-    //TODO make methods for counting bull and cows, and increment turn number
+
+    FBullCowCount SubmitGuess(FString);
 
 private:
 
     //see constructor for initialization 
     int32 MyCurrentTry;
     int32 MyMaxTries;
+    FString MyHiddenWord;
 };
