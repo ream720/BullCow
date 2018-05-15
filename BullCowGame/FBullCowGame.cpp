@@ -32,15 +32,14 @@ bool FBullCowGame::IsGameWon() const {
 }
 
 
-bool FBullCowGame::CheckGuessValidity(FString) const {
-    return false;
+EWordStatus FBullCowGame::CheckGuessValidity(FString) const {
+    return EWordStatus::OK; //TODO make actual error
 }
 
 
 FBullCowCount FBullCowGame::SubmitGuess(FString Guess) {
-    //recieved valid guess -
 
-    //increments turn -
+    //increment turn
     MyCurrentTry++;
 
     //returns count
