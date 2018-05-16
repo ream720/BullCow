@@ -38,6 +38,7 @@ public:
     
     FBullCowCount SubmitValidGuess(FString);
 
+
 private:
 
     //see constructor for initialization 
@@ -45,4 +46,6 @@ private:
     int32 MyMaxTries;
     FString MyHiddenWord;
     bool bGameIsWon;
+
+    bool IsIsogram(FString) const;
 };
