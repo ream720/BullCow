@@ -9,6 +9,7 @@ using int32 = int;
 
 
 enum class EGuessStatus {
+    INVALID_STATUS,
     OK, 
     NOT_ISOGRAM,
     WRONG_LENGTH,

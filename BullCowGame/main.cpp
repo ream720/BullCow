@@ -18,7 +18,7 @@ using int32 = int;
 //functions list / PROTOTYPES
 void PrintIntro();
 void PlayGame();
-FText GetGuess();
+FText GetValidGuess();
 bool AskToPlayAgain();
 
 
@@ -55,17 +55,37 @@ void PrintIntro() {
     return;
 }
 
+//loop continually until the user gives a valid guess
+FText GetValidGuess() {
 
-//get a guess from the player
-FText GetGuess() {
+    EGuessStatus Status = EGuessStatus::INVALID_STATUS;
 
-    int32 CurrentTry = BCGame.GetCurrentTry();
+    do {
+	   int32 CurrentTry = BCGame.GetCurrentTry();
+	   FText Guess = "";
+	   std::cout << "Try " << CurrentTry << ": Enter your guess: ";
+	   std::getline(std::cin, Guess);
 
-    FText Guess = "";
-    std::cout << "Try " << CurrentTry << ": Enter your guess: ";
-    std::getline(std::cin, Guess);
-    return Guess;
-}
+	  Status = BCGame.CheckGuessValidity(Guess);
+		 switch (Status) {
+		  case EGuessStatus::NOT_ISOGRAM:
+			 std::cout << "Please enter an isogram, or a word without repeating letters.";
+			 break;
+
+		  case EGuessStatus::WRONG_LENGTH:
+			 std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word.";
+			 break;
+
+		  case EGuessStatus::NOT_LOWERCASE:
+			 std::cout << "Please use only lowercase letters.";
+			 break;
+
+		  default: return Guess;
+		 }
+		  std::cout << "\n" << std::endl;
+	   } while (Status != EGuessStatus::OK); //keep looping until there are no input errors
+    }
+
 
 
 //loop for the number of GUESS_COUNT asking for guesses
@@ -77,17 +97,12 @@ void PlayGame() {
 
     //TODO change to WHILE loop when we have validation done
     for (int32 i = 1; i <= MaxTries; i++) {
-	   FText Guess = GetGuess(); 
-
-	   EGuessStatus Status = BCGame.CheckGuessValidity(Guess);
+	   FText Guess = GetValidGuess(); 
 
 	   //submit valid guess
 	   FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
-	   //print bulls and cows
 	   std::cout << "\nBulls = " << BullCowCount.Bulls;
 	   std::cout << "\nCows = " << BullCowCount.Cows << std::endl;
-
-	   //repeat the guess back to them
 	   std::cout << "\nYou guessed: " + Guess + "\n" << std::endl;
     }
     //TODO summarize game 
