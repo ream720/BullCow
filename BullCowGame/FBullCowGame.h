@@ -33,6 +33,7 @@ public:
     bool IsGameWon() const;
     EGuessStatus CheckGuessValidity(FString) const;
 
+
     void Reset(); //todo richer return value
     
     FBullCowCount SubmitValidGuess(FString);
