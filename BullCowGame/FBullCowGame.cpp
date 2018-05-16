@@ -2,7 +2,7 @@
 #include "FBullCowGame.h"
 #include <map>
 
-#define TMap std::map;
+#define TMap std::map
 
 
 using FString = std::string;
@@ -91,12 +91,19 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess) {
 bool FBullCowGame::IsIsogram(FString Word) const {
 
     //treat 0 and 1 letter words as isograms
+    if (Word.length() <= 1) { return true; }
 
-    //loop through all letters of word
-	   //if letter is in map
-		  //not an isogram
-	   //otherwise
-		  //add the letter to map
+    TMap<char, bool> LetterSeen; //set up map
 
-    return true; 
+	  for (auto Letter : Word) { //for all letters of the word
+
+	   Letter = tolower(Letter); //make all letters lowercase
+		if (LetterSeen[Letter]) { //check if letter is in map
+			 return false; //not isogram
+
+		} else {    
+		  LetterSeen[Letter] = true;
+		}
+		 return true;
+	  }
 }
