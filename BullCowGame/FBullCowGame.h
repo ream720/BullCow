@@ -35,8 +35,7 @@ public:
 
     void Reset(); //todo richer return value
     
-
-    FBullCowCount SubmitGuess(FString);
+    FBullCowCount SubmitValidGuess(FString);
 
 private:
 

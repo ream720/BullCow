@@ -59,10 +59,10 @@ void PrintIntro() {
 FText GetValidGuess() {
 
     EGuessStatus Status = EGuessStatus::INVALID_STATUS;
+    FText Guess = "";
 
     do {
 	   int32 CurrentTry = BCGame.GetCurrentTry();
-	   FText Guess = "";
 	   std::cout << "Try " << CurrentTry << ": Enter your guess: ";
 	   std::getline(std::cin, Guess);
 
@@ -80,10 +80,11 @@ FText GetValidGuess() {
 			 std::cout << "Please use only lowercase letters.";
 			 break;
 
-		  default: return Guess;
+		  default: break; //assume guess is valid;
 		 }
 		  std::cout << "\n" << std::endl;
 	   } while (Status != EGuessStatus::OK); //keep looping until there are no input errors
+	   return Guess;
     }
 
 
@@ -100,7 +101,7 @@ void PlayGame() {
 	   FText Guess = GetValidGuess(); 
 
 	   //submit valid guess
-	   FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
+	   FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
 	   std::cout << "\nBulls = " << BullCowCount.Bulls;
 	   std::cout << "\nCows = " << BullCowCount.Cows << std::endl;
 	   std::cout << "\nYou guessed: " + Guess + "\n" << std::endl;
