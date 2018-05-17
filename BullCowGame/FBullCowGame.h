@@ -1,8 +1,16 @@
 
+/*
+    Header file for BullCowGame where objects are defined.
+
+    Game logic (no view code or direct user interaction) 
+    -simple word-guessing game based on "Mastermind"
+*/
+
 #pragma once
+
 #include <string>
 
-
+//to make syntax UnrealEngine 4 friendly
 using FString = std::string;
 using int32 = int;
 
@@ -15,6 +23,7 @@ enum class EGuessStatus {
     WRONG_LENGTH,
     NOT_LOWERCASE,
 };
+
 
 struct FBullCowCount {
     int32 Bulls = 0;
@@ -33,8 +42,7 @@ public:
     bool IsGameWon() const;
     EGuessStatus CheckGuessValidity(FString) const;
 
-
-    void Reset(); //todo richer return value
+    void Reset();
     
     FBullCowCount SubmitValidGuess(FString);
 
@@ -47,5 +55,5 @@ private:
     bool bGameIsWon;
 
     bool IsIsogram(FString) const;
-    bool IsLowercase(FString) const; //NEW
+    bool IsLowercase(FString) const;
 };

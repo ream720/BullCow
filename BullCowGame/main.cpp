@@ -5,12 +5,14 @@
     For game logic, see the FBullCowGame class.
 */
 
+#pragma once
 
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
 
+//to make syntax Unreal Engine 4-friendly
 using FText = std::string;
 using int32 = int;
 
@@ -44,10 +46,7 @@ int main() {
 //   METHODS & FUNCTIONS	  METHODS & FUNCTIONS    METHODS & FUNCTIONS	  METHODS & FUNCTIONS	  METHODS & FUNCTIONS    METHODS & FUNCTIONS	METHODS & FUNCTIONS	  METHODS & FUNCTIONS    METHODS & FUNCTIONS
 
 
-    //introduce the game
 void PrintIntro() {
-
-    constexpr int32 WORD_LENGTH = 5; //word length test condition
 
     std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
     std::cout << std::endl;
@@ -64,14 +63,13 @@ void PrintIntro() {
 }
 
 
-//loop for the number of GUESS_COUNT asking for guesses
+//Plays single game to completion
 void PlayGame() {
 
     BCGame.Reset();
 
     int32 MaxTries = BCGame.GetMaxTries();
 
-    //TODO change to WHILE loop when we have validation done
     //loop asking for guesses while the game is NOT won
 	   //and there are still tries remaining
     while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
@@ -124,9 +122,10 @@ FText GetValidGuess() {
 
 //Ask the user to play again
 bool AskToPlayAgain() {
+
+    FText Response = "";
     std::cout << "\nDo you want to play again with the same word? \n";
     std::cout << "Type Yes or No to continue. ";
-    FText Response = "";
     std::getline(std::cin, Response);
 
     return (Response[0] == 'y') || (Response[0] == 'Y');
@@ -136,8 +135,8 @@ bool AskToPlayAgain() {
 void PrintGameSummary() {
     if (BCGame.IsGameWon()) {
 	   std::cout << "\n--! WELL DONE - YOU WIN !--\n";
+
     } else {
 	   std::cout << "\n--! BETTER LUCK NEXT TIME !--\n";
     }
 }
-

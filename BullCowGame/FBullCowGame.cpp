@@ -1,19 +1,23 @@
+/*
+    C++ file for BullCowGame where methods/functions are defined.
+
+*/
+
+#pragma once
 
 #include "FBullCowGame.h"
 #include <map>
 
-#define TMap std::map
-
-
+#define TMap std::map	   //to make syntax UnrealEngine 4 friendly 
 using FString = std::string;
 using int32 = int;
-
 
 FBullCowGame::FBullCowGame() { Reset(); }
 
 int32 FBullCowGame::GetCurrentTry()	const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCowGame::IsGameWon()		const { return bGameIsWon; }
+
 
 
 int32 FBullCowGame::GetMaxTries()	const {
@@ -24,7 +28,7 @@ int32 FBullCowGame::GetMaxTries()	const {
 
 void FBullCowGame::Reset(){
 
-    const FString HIDDEN_WORD = "planets";
+    const FString HIDDEN_WORD = "plan"; //this MUST be an isogram
     MyHiddenWord = HIDDEN_WORD;
 
     MyCurrentTry = 1;
@@ -32,9 +36,6 @@ void FBullCowGame::Reset(){
 
     return;
 }
-
-
-
 
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const {
@@ -90,6 +91,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess) {
    return BullCowCount;
 }
 
+
 bool FBullCowGame::IsIsogram(FString Word) const {
 
     //treat 0 and 1 letter words as isograms
@@ -109,6 +111,7 @@ bool FBullCowGame::IsIsogram(FString Word) const {
 		 return true;
 	  }
 }
+
 
 bool FBullCowGame::IsLowercase(FString Word) const {
     for (auto Letter : Word) {
